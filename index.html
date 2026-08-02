@@ -64,20 +64,20 @@
     background:var(--bg-panel);
     border:1px solid var(--line);
     color:var(--text-dim);
-    padding:8px 3px 6px;
+    padding:9px 3px 7px;
     border-radius:4px;
-    font-size:8.5px;
+    font-size:10px;
     font-family:var(--sans);
     line-height:1.15;
     cursor:pointer;
     transition:border-color .12s, background .12s, transform .06s, color .12s;
     position:relative;
-    min-height:56px;
+    min-height:62px;
   }
   .cat-btn:active{transform:scale(0.97);}
   .cat-btn svg{
-    width:18px;
-    height:18px;
+    width:21px;
+    height:21px;
     color:var(--steel);
     transition:color .12s;
     flex-shrink:0;
@@ -129,10 +129,10 @@
   #cs-dropdown.open{display:block;}
   .cs-group-title{
     font-family:var(--mono);
-    font-size:10px;
+    font-size:11px;
     letter-spacing:.06em;
     color:var(--text-faint);
-    padding:7px 12px 3px;
+    padding:8px 12px 4px;
     text-transform:uppercase;
     border-top:1px solid var(--line-soft);
   }
@@ -141,17 +141,33 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:10px 12px;
+    padding:12px 12px;
     border-top:1px solid var(--line-soft);
     cursor:pointer;
     font-family:var(--mono);
-    font-size:13.5px;
+    font-size:15px;
   }
   .cs-item:first-child{border-top:none;}
   .cs-item:hover, .cs-item:active{background:var(--bg-panel);}
-  .cs-item .gw{color:var(--text-dim); font-size:12px;}
+  .cs-item .gw{color:var(--text-dim); font-size:13px;}
   .cs-item.selected{background:rgba(232,163,61,0.1); color:var(--amber);}
-  .cs-empty{padding:16px 12px; color:var(--text-faint); font-size:13px; font-family:var(--sans);}
+  .cs-item.tap-armed{
+    background:rgba(123,167,201,0.16);
+    box-shadow:inset 0 0 0 1.5px var(--steel);
+    color:var(--steel);
+  }
+  .cs-empty{padding:16px 12px; color:var(--text-faint); font-size:14px; font-family:var(--sans);}
+  .cs-hint{
+    position:sticky;
+    top:0;
+    padding:7px 12px;
+    font-family:var(--sans);
+    font-size:10.5px;
+    color:var(--text-faint);
+    background:var(--bg-panel-raised);
+    border-bottom:1px solid var(--line-soft);
+    z-index:1;
+  }
 
   /* ---- Result ---- */
   #result-section{display:none;}
@@ -166,12 +182,12 @@
   }
   .result-abm{
     font-family:var(--mono);
-    font-size:11.5px;
+    font-size:13px;
     color:var(--text-dim);
     margin-bottom:1px;
   }
   .result-typ{
-    font-size:10.5px;
+    font-size:11.5px;
     color:var(--text-faint);
     margin-bottom:6px;
   }
@@ -183,7 +199,7 @@
   }
   .weight-value{
     font-family:var(--mono);
-    font-size:32px;
+    font-size:38px;
     font-weight:700;
     color:var(--text);
     letter-spacing:-0.02em;
@@ -191,26 +207,26 @@
   }
   .weight-unit{
     font-family:var(--mono);
-    font-size:13px;
+    font-size:14.5px;
     color:var(--text-dim);
   }
   .meta-grid{
     display:grid;
     grid-template-columns:auto 1fr;
-    gap:3px 14px;
+    gap:4px 14px;
     padding-top:8px;
     border-top:1px solid var(--line-soft);
   }
   .meta-key{
     font-family:var(--mono);
-    font-size:9.5px;
+    font-size:10.5px;
     letter-spacing:.08em;
     text-transform:uppercase;
     color:var(--text-faint);
     padding-top:2px;
     white-space:nowrap;
   }
-  .meta-val{font-size:12px; color:var(--text-dim); line-height:1.3;}
+  .meta-val{font-size:13.5px; color:var(--text-dim); line-height:1.3;}
 
   /* ---- Action row (book / switch page) ---- */
   .action-row{
@@ -252,25 +268,26 @@
   #booked-table{width:100%; border-collapse:collapse;}
   #booked-table th{
     font-family:var(--mono);
-    font-size:9.5px;
+    font-size:10.5px;
     letter-spacing:.06em;
     text-transform:uppercase;
     color:var(--text-faint);
     text-align:left;
-    padding:8px 8px;
+    padding:9px 8px;
     border-bottom:1px solid var(--line);
   }
   #booked-table th:nth-child(2),
-  #booked-table th:nth-child(3){text-align:center; width:64px;}
-  #booked-table th:nth-child(4){text-align:right; width:74px;}
+  #booked-table th:nth-child(3){text-align:center; width:60px;}
+  #booked-table th:nth-child(4){text-align:right; width:80px;}
   #booked-table td{
-    padding:8px 8px;
+    padding:9px 8px;
     border-top:1px solid var(--line-soft);
-    font-size:12.5px;
+    font-size:14px;
     vertical-align:middle;
   }
-  .bk-name{color:var(--text); line-height:1.25;}
-  .bk-sub{color:var(--text-faint); font-size:10.5px; margin-top:1px;}
+  .bk-name{color:var(--text); line-height:1.3; cursor:pointer; text-decoration:underline dotted var(--text-faint); text-underline-offset:3px;}
+  .bk-name:active{color:var(--steel);}
+  .bk-sub{color:var(--text-faint); font-size:11.5px; margin-top:2px;}
   .bk-input{
     width:52px;
     background:var(--bg);
@@ -279,7 +296,7 @@
     padding:6px 4px;
     border-radius:3px;
     font-family:var(--mono);
-    font-size:14px;
+    font-size:16px;
     text-align:center;
   }
   .bk-input:focus{outline:none; border-color:var(--steel);}
@@ -312,13 +329,13 @@
     font-family:var(--mono);
   }
   .total-row span:first-child{
-    font-size:11px;
+    font-size:12px;
     letter-spacing:.08em;
     text-transform:uppercase;
     color:var(--text-faint);
   }
   .total-row span:last-child{
-    font-size:22px;
+    font-size:26px;
     font-weight:700;
     color:var(--text);
   }
@@ -330,17 +347,82 @@
     justify-content:center;
     gap:8px;
     margin-top:16px;
-    padding:13px 0;
+    padding:14px 0;
     background:var(--bg-panel);
     border:1px solid var(--line);
     color:var(--text-dim);
     border-radius:4px;
     font-family:var(--sans);
-    font-size:13px;
+    font-size:14.5px;
     cursor:pointer;
   }
   .back-button svg{width:16px; height:16px;}
   .back-button:active{transform:scale(0.98);}
+
+  /* ---- Row editor overlay (Querschnitt auf Seite 2 ändern) ---- */
+  #row-edit-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    z-index:100;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  #row-edit-overlay.open{display:flex;}
+  .row-edit-panel{
+    width:100%;
+    max-width:640px;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-bottom:none;
+    border-radius:10px 10px 0 0;
+    padding:14px 16px calc(16px + env(safe-area-inset-bottom));
+    max-height:80vh;
+    display:flex;
+    flex-direction:column;
+  }
+  .row-edit-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .row-edit-header span{
+    font-size:14px;
+    color:var(--text-dim);
+    font-family:var(--sans);
+  }
+  #row-edit-close{
+    background:none;
+    border:none;
+    color:var(--text-faint);
+    font-size:20px;
+    line-height:1;
+    padding:4px 8px;
+    cursor:pointer;
+  }
+  #row-edit-search{
+    width:100%;
+    background:var(--bg);
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:11px 12px;
+    border-radius:3px;
+    font-size:16px;
+    font-family:var(--mono);
+    margin-bottom:8px;
+  }
+  #row-edit-search:focus{outline:none; border-color:var(--steel);}
+  #row-edit-search::placeholder{color:var(--text-faint); font-family:var(--sans);}
+  #row-edit-dropdown{
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);
+    border-radius:3px;
+    background:var(--bg-panel-raised);
+    flex:1;
+  }
   ::-webkit-scrollbar{width:8px;}
   ::-webkit-scrollbar-track{background:transparent;}
   ::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
@@ -417,6 +499,17 @@
     Zur Profilauswahl
   </button>
 
+</div>
+
+<div id="row-edit-overlay">
+  <div class="row-edit-panel">
+    <div class="row-edit-header">
+      <span id="row-edit-title"></span>
+      <button id="row-edit-close" type="button">✕</button>
+    </div>
+    <input type="text" id="row-edit-search" placeholder="Querschnitt suchen…" autocomplete="off" spellcheck="false">
+    <div id="row-edit-dropdown"></div>
+  </div>
 </div>
 
 <script>
@@ -533,7 +626,6 @@ const totalWeightEl = document.getElementById('total-weight');
 
 let currentCategory = null;
 let currentItems = [];
-let currentSelectedIndex = null;
 let lastSelected = null; // {category, item} — bleibt für "Buchen" erhalten, auch wenn weitergetippt wird
 
 function fmtNum(n){
@@ -558,8 +650,26 @@ function buildCategories(){
   });
 }
 
-// Wandelt Zoll-Bruchwerte (z. B. 3/4", 1 1/4") in mm um
-function inchToMm(str){
+// Exakte Rohrmaße für Zoll-Rundrohre (Nennweite DN | Zoll | Außendurchmesser | Wanddicke)
+const ZOLL_TABLE = [
+  {inch:0.125, od:10.20, wt:2.00},
+  {inch:0.25,  od:13.50, wt:2.35},
+  {inch:0.375, od:17.20, wt:2.35},
+  {inch:0.5,   od:21.30, wt:2.65},
+  {inch:0.75,  od:26.90, wt:2.65},
+  {inch:1,     od:33.70, wt:3.25},
+  {inch:1.25,  od:42.40, wt:3.25},
+  {inch:1.5,   od:48.30, wt:3.35},
+  {inch:2,     od:60.30, wt:3.65},
+  {inch:2.5,   od:76.10, wt:3.65},
+  {inch:3,     od:88.90, wt:4.05},
+  {inch:4,     od:114.30,wt:4.50},
+  {inch:5,     od:139.70,wt:4.85},
+  {inch:6,     od:165.10,wt:4.85}
+];
+
+// Wandelt Zoll-Bruchwerte (z. B. 3/4", 1 1/4", 5/4") in einen Dezimalwert (Zoll) um
+function inchStringToDecimal(str){
   const s = str.replace(/["“”]/g, '').trim();
   let total = 0;
   const parts = s.split(/\s+/);
@@ -572,13 +682,26 @@ function inchToMm(str){
       if (!isNaN(v)) total += v;
     }
   }
-  return total * 25.4;
+  return total;
+}
+
+function lookupZoll(decimalInch){
+  let best = null, bestDiff = Infinity;
+  ZOLL_TABLE.forEach(row => {
+    const diff = Math.abs(row.inch - decimalInch);
+    if (diff < bestDiff){ bestDiff = diff; best = row; }
+  });
+  return (best && bestDiff < 0.01) ? best : null;
 }
 
 function formatAbm(item){
   if (item.abm.indexOf('"') !== -1){
-    const mm = inchToMm(item.abm);
-    return `${item.abm} (${mm.toFixed(1).replace('.', ',')} mm)`;
+    const dec = inchStringToDecimal(item.abm);
+    const row = lookupZoll(dec);
+    if (row){
+      return `${item.abm} (${fmtNum(row.od)}mm/${fmtNum(row.wt)}mm)`;
+    }
+    return `${item.abm} (${fmtNum(dec*25.4)} mm)`;
   }
   return item.abm;
 }
@@ -590,7 +713,6 @@ function escapeHtml(s){
 function selectCategory(key, btnEl){
   currentCategory = key;
   currentItems = DATA[key].items;
-  currentSelectedIndex = null;
   lastSelected = null;
 
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -603,52 +725,59 @@ function selectCategory(key, btnEl){
   openDropdown();
 }
 
-function renderDropdown(filter){
-  const f = filter.trim().toLowerCase();
-  const filtered = currentItems
-    .map((item, idx) => ({item, idx}))
-    .filter(({item}) => {
-      if (!f) return true;
-      const hay = (item.abm + ' ' + (item.typ||'')).toLowerCase();
-      return hay.includes(f);
-    });
-
-  if (filtered.length === 0){
-    csDropdown.innerHTML = '<div class="cs-empty">Kein Querschnitt gefunden.</div>';
-    return;
-  }
-
+// Baut die HTML-Liste für ein Dropdown (Gruppen nach Typ, Zoll-Werte inkl. mm-Angabe)
+function buildCsListHtml(items, fallbackLabel){
+  if (items.length === 0) return '<div class="cs-empty">Kein Querschnitt gefunden.</div>';
   let html = '';
   let lastTyp = undefined;
-  filtered.forEach(({item, idx}) => {
+  items.forEach((item, idx) => {
     if (item.typ !== lastTyp){
-      html += `<div class="cs-group-title">${escapeHtml(item.typ || DATA[currentCategory].abm_label || '')}</div>`;
+      html += `<div class="cs-group-title">${escapeHtml(item.typ || fallbackLabel || '')}</div>`;
       lastTyp = item.typ;
     }
-    const sel = idx === currentSelectedIndex ? ' selected' : '';
-    html += `<div class="cs-item${sel}" data-idx="${idx}"><span>${escapeHtml(formatAbm(item))}</span><span class="gw">${fmtNum(item.gewicht)} kg/m</span></div>`;
+    html += `<div class="cs-item" data-idx="${idx}"><span>${escapeHtml(formatAbm(item))}</span><span class="gw">${fmtNum(item.gewicht)} kg/m</span></div>`;
   });
-  csDropdown.innerHTML = html;
+  return html;
 }
 
-// Ein einziger, delegierter Handler auf dem Dropdown-Container statt Listener pro Zeile.
-// pointerdown (statt click) + preventDefault verhindert, dass das Suchfeld vor der
-// Auswahl den Fokus verliert ("blur") und der Tap dadurch auf Mobilgeräten verloren geht.
-csDropdown.addEventListener('pointerdown', (e) => {
-  const item = e.target.closest('.cs-item');
-  if (!item) return;
-  e.preventDefault();
-  const idx = parseInt(item.getAttribute('data-idx'), 10);
-  selectItem(idx);
-});
-// Fallback für Browser ohne Pointer-Events (preventDefault auf pointerdown unterdrückt
-// die kompatiblen Maus-Events bei modernen Browsern, daher kein Doppel-Feuern)
-csDropdown.addEventListener('mousedown', (e) => {
-  const item = e.target.closest('.cs-item');
-  if (!item) return;
-  e.preventDefault();
-  const idx = parseInt(item.getAttribute('data-idx'), 10);
-  selectItem(idx);
+// Geteilte Doppeltipp-Logik: 1. Antippen hebt nur hervor (Liste bleibt normal scrollbar),
+// erst ein 2. Antippen desselben Eintrags (innerhalb 600ms) wählt ihn aus.
+// Das verhindert, dass beim Scrollen durch die Liste versehentlich sofort etwas gewählt wird.
+function attachDoubleTapSelect(containerEl, getItems, onSelect){
+  let lastIdx = null, lastTime = 0;
+  containerEl.addEventListener('click', (e) => {
+    const el = e.target.closest('.cs-item');
+    if (!el) return;
+    const idx = parseInt(el.getAttribute('data-idx'), 10);
+    const now = Date.now();
+    if (idx === lastIdx && (now - lastTime) < 600){
+      const items = getItems();
+      lastIdx = null;
+      onSelect(items[idx]);
+    } else {
+      containerEl.querySelectorAll('.cs-item.tap-armed').forEach(x => x.classList.remove('tap-armed'));
+      el.classList.add('tap-armed');
+      lastIdx = idx;
+      lastTime = now;
+    }
+  });
+}
+
+let csDropdownFiltered = [];
+
+function renderDropdown(filter){
+  const f = filter.trim().toLowerCase();
+  csDropdownFiltered = currentItems.filter(item => {
+    if (!f) return true;
+    const hay = (item.abm + ' ' + (item.typ||'')).toLowerCase();
+    return hay.includes(f);
+  });
+  const label = DATA[currentCategory] && DATA[currentCategory].abm_label;
+  csDropdown.innerHTML = '<div class="cs-hint">Zweimal tippen zum Auswählen</div>' + buildCsListHtml(csDropdownFiltered, label);
+}
+
+attachDoubleTapSelect(csDropdown, () => csDropdownFiltered, (item) => {
+  if (item) selectItemObj(item);
 });
 
 function openDropdown(){
@@ -658,9 +787,7 @@ function closeDropdown(){
   csDropdown.classList.remove('open');
 }
 
-function selectItem(idx){
-  currentSelectedIndex = idx;
-  const item = currentItems[idx];
+function selectItemObj(item){
   lastSelected = {category: currentCategory, item};
 
   searchInput.value = formatAbm(item);
@@ -677,7 +804,6 @@ function selectItem(idx){
 }
 
 searchInput.addEventListener('input', () => {
-  currentSelectedIndex = null;
   renderDropdown(searchInput.value);
   openDropdown();
 });
@@ -698,9 +824,8 @@ document.addEventListener('click', (e) => {
 
 searchInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter'){
-    const first = csDropdown.querySelector('.cs-item');
-    if (first){
-      selectItem(parseInt(first.getAttribute('data-idx'), 10));
+    if (csDropdownFiltered.length > 0){
+      selectItemObj(csDropdownFiltered[0]);
     }
   } else if (e.key === 'Escape'){
     closeDropdown();
@@ -724,9 +849,10 @@ function bookCurrentItem(){
   if (!lastSelected) return;
   bookedItems.push({
     id: Date.now() + '-' + Math.random().toString(36).slice(2,7),
-    category: SHORT_LABEL[lastSelected.category] || lastSelected.category,
+    categoryKey: lastSelected.category,
+    categoryLabel: SHORT_LABEL[lastSelected.category] || lastSelected.category,
     typ: lastSelected.item.typ,
-    abm: formatAbm(lastSelected.item),
+    abmRaw: lastSelected.item.abm,
     gewicht: lastSelected.item.gewicht,
     length: 1,
     qty: 1
@@ -761,7 +887,21 @@ function renderBooked(){
     const tr = document.createElement('tr');
 
     const nameTd = document.createElement('td');
-    nameTd.innerHTML = `<div class="bk-name">${escapeHtml(row.abm)}</div><div class="bk-sub">${escapeHtml(row.typ || row.category)}</div>`;
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'bk-name';
+    nameDiv.textContent = row.abmRaw !== undefined ? formatAbm({abm: row.abmRaw}) : (row.abm || '');
+    const editable = !!(row.categoryKey && DATA[row.categoryKey]);
+    if (editable){
+      nameDiv.addEventListener('click', () => openRowEditor(row));
+    } else {
+      nameDiv.style.textDecoration = 'none';
+      nameDiv.style.cursor = 'default';
+    }
+    const subDiv = document.createElement('div');
+    subDiv.className = 'bk-sub';
+    subDiv.textContent = row.typ || row.categoryLabel || row.category || '';
+    nameTd.appendChild(nameDiv);
+    nameTd.appendChild(subDiv);
     tr.appendChild(nameTd);
 
     const lenTd = document.createElement('td');
@@ -842,6 +982,58 @@ function showPage1(){
   page2El.style.display = 'none';
   page1El.style.display = 'block';
 }
+
+// ---- Querschnitt einer gebuchten Zeile ändern (Seite 2) ----
+const rowEditOverlay = document.getElementById('row-edit-overlay');
+const rowEditTitle = document.getElementById('row-edit-title');
+const rowEditClose = document.getElementById('row-edit-close');
+const rowEditSearch = document.getElementById('row-edit-search');
+const rowEditDropdownEl = document.getElementById('row-edit-dropdown');
+
+let editingRow = null;
+let rowEditItems = [];
+let rowEditFiltered = [];
+
+function openRowEditor(row){
+  editingRow = row;
+  rowEditItems = (DATA[row.categoryKey] && DATA[row.categoryKey].items) || [];
+  rowEditTitle.textContent = row.categoryLabel || row.categoryKey || '';
+  rowEditSearch.value = '';
+  renderRowEditDropdown('');
+  rowEditOverlay.classList.add('open');
+}
+
+function closeRowEditor(){
+  rowEditOverlay.classList.remove('open');
+  editingRow = null;
+}
+
+function renderRowEditDropdown(filter){
+  const f = filter.trim().toLowerCase();
+  rowEditFiltered = rowEditItems.filter(item => {
+    if (!f) return true;
+    const hay = (item.abm + ' ' + (item.typ||'')).toLowerCase();
+    return hay.includes(f);
+  });
+  const label = editingRow && DATA[editingRow.categoryKey] && DATA[editingRow.categoryKey].abm_label;
+  rowEditDropdownEl.innerHTML = '<div class="cs-hint">Zweimal tippen zum Auswählen</div>' + buildCsListHtml(rowEditFiltered, label);
+}
+
+attachDoubleTapSelect(rowEditDropdownEl, () => rowEditFiltered, (item) => {
+  if (!item || !editingRow) return;
+  editingRow.typ = item.typ;
+  editingRow.abmRaw = item.abm;
+  editingRow.gewicht = item.gewicht;
+  saveBooked();
+  renderBooked();
+  closeRowEditor();
+});
+
+rowEditSearch.addEventListener('input', () => renderRowEditDropdown(rowEditSearch.value));
+rowEditClose.addEventListener('click', closeRowEditor);
+rowEditOverlay.addEventListener('click', (e) => {
+  if (e.target === rowEditOverlay) closeRowEditor();
+});
 
 bookBtn.addEventListener('click', bookCurrentItem);
 pageBtn.addEventListener('click', showPage2);
