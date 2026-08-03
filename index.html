@@ -28,7 +28,7 @@
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
-  html,body{height:100%; overscroll-behavior-y:none;}
+  html,body{height:100%; overscroll-behavior-y:none; overflow-x:hidden; max-width:100%;}
   body{
     margin:0;
     background:var(--bg);
@@ -38,11 +38,13 @@
     min-height:100%;
     padding-bottom:calc(24px + env(safe-area-inset-bottom));
     touch-action:manipulation;
+    width:100%;
   }
   .wrap{
     max-width:640px;
+    width:100%;
     margin:0 auto;
-    padding:calc(20px + env(safe-area-inset-top)) 16px 0;
+    padding:calc(20px + env(safe-area-inset-top)) 14px 0;
   }
 
   /* ---- Sections ---- */
@@ -64,20 +66,20 @@
     background:var(--bg-panel);
     border:1px solid var(--line);
     color:var(--text-dim);
-    padding:9px 3px 7px;
+    padding:8px 2px 6px;
     border-radius:4px;
-    font-size:10px;
+    font-size:8px;
     font-family:var(--sans);
-    line-height:1.15;
+    line-height:1.1;
     cursor:pointer;
     transition:border-color .12s, background .12s, transform .06s, color .12s;
     position:relative;
-    min-height:62px;
+    min-height:58px;
   }
   .cat-btn:active{transform:scale(0.97);}
   .cat-btn svg{
-    width:21px;
-    height:21px;
+    width:25px;
+    height:25px;
     color:var(--steel);
     transition:color .12s;
     flex-shrink:0;
@@ -103,12 +105,13 @@
     background:var(--bg-panel);
     border:1px solid var(--line);
     color:var(--text);
-    padding:10px 12px;
+    padding:9px 11px;
     border-radius:3px;
     font-size:16px;
     font-family:var(--mono);
   }
   #search:focus{outline:none; border-color:var(--steel);}
+  #search[readonly]{color:var(--text-dim); caret-color:transparent;}
   #search::placeholder{color:var(--text-faint); font-family:var(--sans);}
 
   #cs-dropdown{
@@ -129,10 +132,10 @@
   #cs-dropdown.open{display:block;}
   .cs-group-title{
     font-family:var(--mono);
-    font-size:11px;
+    font-size:10px;
     letter-spacing:.06em;
     color:var(--text-faint);
-    padding:8px 12px 4px;
+    padding:7px 12px 3px;
     text-transform:uppercase;
     border-top:1px solid var(--line-soft);
   }
@@ -141,33 +144,17 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:12px 12px;
+    padding:11px 12px;
     border-top:1px solid var(--line-soft);
     cursor:pointer;
     font-family:var(--mono);
-    font-size:15px;
+    font-size:13px;
   }
   .cs-item:first-child{border-top:none;}
   .cs-item:hover, .cs-item:active{background:var(--bg-panel);}
-  .cs-item .gw{color:var(--text-dim); font-size:13px;}
-  .cs-item.selected{background:rgba(232,163,61,0.1); color:var(--amber);}
-  .cs-item.tap-armed{
-    background:rgba(123,167,201,0.16);
-    box-shadow:inset 0 0 0 1.5px var(--steel);
-    color:var(--steel);
-  }
-  .cs-empty{padding:16px 12px; color:var(--text-faint); font-size:14px; font-family:var(--sans);}
-  .cs-hint{
-    position:sticky;
-    top:0;
-    padding:7px 12px;
-    font-family:var(--sans);
-    font-size:10.5px;
-    color:var(--text-faint);
-    background:var(--bg-panel-raised);
-    border-bottom:1px solid var(--line-soft);
-    z-index:1;
-  }
+  .cs-item .gw{color:var(--text-dim); font-size:11.5px;}
+  .cs-empty{padding:16px 12px; color:var(--text-faint); font-size:13px; font-family:var(--sans);}
+  #search.tap-armed, #row-edit-search.tap-armed{border-color:var(--steel);}
 
   /* ---- Result ---- */
   #result-section{display:none;}
@@ -182,24 +169,24 @@
   }
   .result-abm{
     font-family:var(--mono);
-    font-size:13px;
+    font-size:11.5px;
     color:var(--text-dim);
     margin-bottom:1px;
   }
   .result-typ{
-    font-size:11.5px;
+    font-size:10px;
     color:var(--text-faint);
     margin-bottom:6px;
   }
   .weight-row{
     display:flex;
     align-items:baseline;
-    gap:7px;
+    gap:6px;
     margin-bottom:8px;
   }
   .weight-value{
     font-family:var(--mono);
-    font-size:38px;
+    font-size:34px;
     font-weight:700;
     color:var(--text);
     letter-spacing:-0.02em;
@@ -207,7 +194,7 @@
   }
   .weight-unit{
     font-family:var(--mono);
-    font-size:14.5px;
+    font-size:13px;
     color:var(--text-dim);
   }
   .meta-grid{
@@ -219,16 +206,16 @@
   }
   .meta-key{
     font-family:var(--mono);
-    font-size:10.5px;
+    font-size:9.5px;
     letter-spacing:.08em;
     text-transform:uppercase;
     color:var(--text-faint);
     padding-top:2px;
     white-space:nowrap;
   }
-  .meta-val{font-size:13.5px; color:var(--text-dim); line-height:1.3;}
+  .meta-val{font-size:12px; color:var(--text-dim); line-height:1.3;}
 
-  /* ---- Action row (book / switch page) ---- */
+  /* ---- Action row (book) ---- */
   .action-row{
     display:flex;
     gap:8px;
@@ -241,20 +228,54 @@
     display:flex;
     align-items:center;
     justify-content:center;
+    gap:8px;
     background:var(--bg-panel-raised);
     border:1px solid var(--line);
     color:var(--steel);
     padding:11px 0;
     border-radius:3px;
     cursor:pointer;
-    transition:border-color .12s, transform .06s, background .12s;
+    font-family:var(--sans);
+    font-size:13px;
+    transition:border-color .12s, transform .06s, background .12s, opacity .12s;
   }
-  .icon-btn svg{width:20px; height:20px;}
+  .icon-btn svg{width:22px; height:22px; flex-shrink:0;}
   .icon-btn:active{transform:scale(0.95);}
   .icon-btn.flash{
     border-color:var(--amber);
     background:rgba(232,163,61,0.12);
     color:var(--amber);
+  }
+
+  /* ---- Goto-table Button (unter der Ergebniskarte, sobald etwas gebucht ist) ---- */
+  #goto-table-section{display:none; padding-top:0;}
+  #goto-table-section.show{display:block;}
+  .goto-table-btn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    color:var(--steel);
+    padding:12px 0;
+    border-radius:4px;
+    cursor:pointer;
+    font-family:var(--sans);
+    font-size:12.5px;
+  }
+  .goto-table-btn svg{width:24px; height:24px;}
+  .goto-table-btn:active{transform:scale(0.98);}
+  .goto-table-btn .badge{
+    background:var(--amber);
+    color:#1a1305;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:11px;
+    border-radius:10px;
+    padding:1px 7px;
+    margin-left:2px;
   }
 
   /* ---- Page 2: booked list ---- */
@@ -265,35 +286,42 @@
     overflow:hidden;
     background:var(--bg-panel);
   }
-  #booked-table{width:100%; border-collapse:collapse;}
+  #booked-table{width:100%; border-collapse:collapse; table-layout:fixed;}
   #booked-table th{
     font-family:var(--mono);
-    font-size:10.5px;
-    letter-spacing:.06em;
+    font-size:9.5px;
+    letter-spacing:.05em;
     text-transform:uppercase;
     color:var(--text-faint);
     text-align:left;
-    padding:9px 8px;
+    padding:8px 5px;
     border-bottom:1px solid var(--line);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
   }
-  #booked-table th:nth-child(2),
-  #booked-table th:nth-child(3){text-align:center; width:60px;}
-  #booked-table th:nth-child(4){text-align:right; width:80px;}
+  #booked-table th:nth-child(1), #booked-table td:nth-child(1){width:40%;}
+  #booked-table th:nth-child(2), #booked-table td:nth-child(2){width:19%; text-align:center;}
+  #booked-table th:nth-child(3), #booked-table td:nth-child(3){width:16%; text-align:center;}
+  #booked-table th:nth-child(4), #booked-table td:nth-child(4){width:19%; text-align:right;}
+  #booked-table th:nth-child(5), #booked-table td:nth-child(5){width:6%;}
   #booked-table td{
-    padding:9px 8px;
+    padding:8px 5px;
     border-top:1px solid var(--line-soft);
-    font-size:14px;
+    font-size:12.5px;
     vertical-align:middle;
+    overflow:hidden;
   }
-  .bk-name{color:var(--text); line-height:1.3; cursor:pointer; text-decoration:underline dotted var(--text-faint); text-underline-offset:3px;}
+  .bk-name{color:var(--text); line-height:1.3; cursor:pointer; text-decoration:underline dotted var(--text-faint); text-underline-offset:3px; word-break:break-word;}
   .bk-name:active{color:var(--steel);}
-  .bk-sub{color:var(--text-faint); font-size:11.5px; margin-top:2px;}
+  .bk-sub{color:var(--text-faint); font-size:10.5px; margin-top:2px; word-break:break-word;}
   .bk-input{
-    width:52px;
+    width:100%;
+    max-width:56px;
     background:var(--bg);
     border:1px solid var(--line);
     color:var(--text);
-    padding:6px 4px;
+    padding:6px 2px;
     border-radius:3px;
     font-family:var(--mono);
     font-size:16px;
@@ -340,24 +368,15 @@
     color:var(--text);
   }
 
-  .back-button{
-    width:100%;
+  .page2-actions{
     display:flex;
-    align-items:center;
-    justify-content:center;
     gap:8px;
     margin-top:16px;
-    padding:14px 0;
-    background:var(--bg-panel);
-    border:1px solid var(--line);
-    color:var(--text-dim);
-    border-radius:4px;
-    font-family:var(--sans);
-    font-size:14.5px;
-    cursor:pointer;
   }
-  .back-button svg{width:16px; height:16px;}
-  .back-button:active{transform:scale(0.98);}
+  .page2-actions .icon-btn[disabled]{
+    opacity:0.35;
+    pointer-events:none;
+  }
 
   /* ---- Row editor overlay (Querschnitt auf Seite 2 ändern) ---- */
   #row-edit-overlay{
@@ -438,7 +457,7 @@
 
   <section id="cs-section">
     <div class="search-wrap">
-      <input type="text" id="search" placeholder="Querschnitt suchen, z. B. 40/40…" autocomplete="off" spellcheck="false">
+      <input type="text" id="search" placeholder="Einmal: Liste browsen · Doppelt: Zahlen tippen" autocomplete="off" spellcheck="false">
       <div id="cs-dropdown"></div>
     </div>
   </section>
@@ -460,12 +479,18 @@
       <div class="action-row">
         <button id="book-btn" class="icon-btn" type="button" title="Zur Liste hinzufügen">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
-        </button>
-        <button id="page-btn" class="icon-btn" type="button" title="Zur Übersicht">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 10h18M9 4v16"/></svg>
+          <span>Buchen</span>
         </button>
       </div>
     </div>
+  </section>
+
+  <section id="goto-table-section">
+    <button id="page-btn" class="goto-table-btn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 10h18M9 4v16"/></svg>
+      <span>Zur Tabelle</span>
+      <span class="badge" id="goto-table-badge">0</span>
+    </button>
   </section>
 
 </div>
@@ -494,10 +519,20 @@
     </div>
   </section>
 
-  <button id="back-btn" class="back-button" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-    Zur Profilauswahl
-  </button>
+  <div class="page2-actions">
+    <button id="back-btn" class="icon-btn" type="button" title="Zur Profilauswahl">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button id="undo-btn" class="icon-btn" type="button" title="Rückgängig">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-2"/></svg>
+    </button>
+    <button id="redo-btn" class="icon-btn" type="button" title="Wiederherstellen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h2"/></svg>
+    </button>
+    <button id="copy-btn" class="icon-btn" type="button" title="Tabelle kopieren">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="1.5"/><path d="M16 8V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h3"/></svg>
+    </button>
+  </div>
 
 </div>
 
@@ -507,7 +542,7 @@
       <span id="row-edit-title"></span>
       <button id="row-edit-close" type="button">✕</button>
     </div>
-    <input type="text" id="row-edit-search" placeholder="Querschnitt suchen…" autocomplete="off" spellcheck="false">
+    <input type="text" id="row-edit-search" placeholder="Einmal: Liste browsen · Doppelt: Zahlen tippen" autocomplete="off" spellcheck="false">
     <div id="row-edit-dropdown"></div>
   </div>
 </div>
@@ -615,9 +650,14 @@ const searchInput = document.getElementById('search');
 const resultSection = document.getElementById('result-section');
 const bookBtn = document.getElementById('book-btn');
 const pageBtn = document.getElementById('page-btn');
+const gotoTableSection = document.getElementById('goto-table-section');
+const gotoTableBadge = document.getElementById('goto-table-badge');
 const page1El = document.getElementById('page1');
 const page2El = document.getElementById('page2');
 const backBtn = document.getElementById('back-btn');
+const undoBtn = document.getElementById('undo-btn');
+const redoBtn = document.getElementById('redo-btn');
+const copyBtn = document.getElementById('copy-btn');
 const bookedEmpty = document.getElementById('booked-empty');
 const bookedTableWrap = document.getElementById('booked-table-wrap');
 const bookedTbody = document.getElementById('booked-tbody');
@@ -699,9 +739,9 @@ function formatAbm(item){
     const dec = inchStringToDecimal(item.abm);
     const row = lookupZoll(dec);
     if (row){
-      return `${item.abm} (${fmtNum(row.od)}mm/${fmtNum(row.wt)}mm)`;
+      return `${item.abm} (${fmtNum(row.od)} /${fmtNum(row.wt)})`;
     }
-    return `${item.abm} (${fmtNum(dec*25.4)} mm)`;
+    return `${item.abm} (${fmtNum(dec*25.4)})`;
   }
   return item.abm;
 }
@@ -740,43 +780,71 @@ function buildCsListHtml(items, fallbackLabel){
   return html;
 }
 
-// Geteilte Doppeltipp-Logik: 1. Antippen hebt nur hervor (Liste bleibt normal scrollbar),
-// erst ein 2. Antippen desselben Eintrags (innerhalb 600ms) wählt ihn aus.
-// Das verhindert, dass beim Scrollen durch die Liste versehentlich sofort etwas gewählt wird.
-function attachDoubleTapSelect(containerEl, getItems, onSelect){
-  let lastIdx = null, lastTime = 0;
+// Einfach-Tipp auf einen Listeneintrag wählt ihn sofort aus.
+function attachSingleTapSelect(containerEl, getItems, onSelect){
   containerEl.addEventListener('click', (e) => {
     const el = e.target.closest('.cs-item');
     if (!el) return;
     const idx = parseInt(el.getAttribute('data-idx'), 10);
+    const items = getItems();
+    onSelect(items[idx]);
+  });
+}
+
+// Nur Ziffern für den Vergleich/die Eingabe berücksichtigen (Suchfeld erlaubt nur Zahlen)
+function digitsOnly(s){
+  return (s || '').replace(/[^0-9]/g, '');
+}
+
+// Sperrt ein Sucheingabefeld standardmäßig: 1. Antippen zeigt/aktualisiert nur die Liste
+// (keine Tastatur), erst ein 2. Antippen (Doppeltipp, < 500ms) entsperrt das Feld zum
+// Tippen — dabei sind nur Ziffern erlaubt.
+function wireLockedSearch(inputEl, onOpenFull, onFilter){
+  let lastTap = 0;
+  inputEl.setAttribute('readonly', 'readonly');
+  inputEl.setAttribute('inputmode', 'numeric');
+  inputEl.setAttribute('pattern', '[0-9]*');
+
+  inputEl.addEventListener('click', () => {
+    if (!inputEl.hasAttribute('readonly')) return;
     const now = Date.now();
-    if (idx === lastIdx && (now - lastTime) < 600){
-      const items = getItems();
-      lastIdx = null;
-      onSelect(items[idx]);
+    if (now - lastTap < 500){
+      inputEl.removeAttribute('readonly');
+      inputEl.classList.remove('tap-armed');
+      inputEl.focus();
     } else {
-      containerEl.querySelectorAll('.cs-item.tap-armed').forEach(x => x.classList.remove('tap-armed'));
-      el.classList.add('tap-armed');
-      lastIdx = idx;
-      lastTime = now;
+      inputEl.classList.add('tap-armed');
+      onOpenFull();
     }
+    lastTap = now;
+  });
+
+  inputEl.addEventListener('input', () => {
+    const filtered = digitsOnly(inputEl.value);
+    if (filtered !== inputEl.value) inputEl.value = filtered;
+    onFilter(inputEl.value);
+  });
+
+  inputEl.addEventListener('blur', () => {
+    inputEl.setAttribute('readonly', 'readonly');
+    inputEl.classList.remove('tap-armed');
   });
 }
 
 let csDropdownFiltered = [];
 
 function renderDropdown(filter){
-  const f = filter.trim().toLowerCase();
+  const fDigits = digitsOnly(filter);
   csDropdownFiltered = currentItems.filter(item => {
-    if (!f) return true;
-    const hay = (item.abm + ' ' + (item.typ||'')).toLowerCase();
-    return hay.includes(f);
+    if (!fDigits) return true;
+    const hay = digitsOnly(item.abm + ' ' + (item.typ||''));
+    return hay.includes(fDigits);
   });
   const label = DATA[currentCategory] && DATA[currentCategory].abm_label;
-  csDropdown.innerHTML = '<div class="cs-hint">Zweimal tippen zum Auswählen</div>' + buildCsListHtml(csDropdownFiltered, label);
+  csDropdown.innerHTML = buildCsListHtml(csDropdownFiltered, label);
 }
 
-attachDoubleTapSelect(csDropdown, () => csDropdownFiltered, (item) => {
+attachSingleTapSelect(csDropdown, () => csDropdownFiltered, (item) => {
   if (item) selectItemObj(item);
 });
 
@@ -803,18 +871,11 @@ function selectItemObj(item){
   resultSection.classList.add('show');
 }
 
-searchInput.addEventListener('input', () => {
-  renderDropdown(searchInput.value);
-  openDropdown();
-});
-
-// Beim Fokussieren immer die volle Liste zeigen (nicht nach bereits gewähltem Wert filtern)
-// und den Text markieren, damit man sofort weitertippen oder einen anderen Querschnitt wählen kann.
-searchInput.addEventListener('focus', () => {
-  renderDropdown('');
-  openDropdown();
-  searchInput.select();
-});
+wireLockedSearch(
+  searchInput,
+  () => { renderDropdown(''); openDropdown(); },
+  (val) => { renderDropdown(val); openDropdown(); }
+);
 
 document.addEventListener('click', (e) => {
   if (!csSection.contains(e.target)){
@@ -845,6 +906,56 @@ function saveBooked(){
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bookedItems)); } catch(e){}
 }
 
+function updateGotoTableVisibility(){
+  if (bookedItems.length > 0){
+    gotoTableSection.classList.add('show');
+    gotoTableBadge.textContent = bookedItems.length;
+  } else {
+    gotoTableSection.classList.remove('show');
+  }
+}
+
+// ---- Rückgängig / Wiederherstellen ----
+let historyStack = [];
+let historyIndex = -1;
+const MAX_HISTORY = 50;
+
+function snapshotHistory(){
+  historyStack = historyStack.slice(0, historyIndex + 1);
+  historyStack.push(JSON.stringify(bookedItems));
+  if (historyStack.length > MAX_HISTORY) historyStack.shift();
+  historyIndex = historyStack.length - 1;
+  updateUndoRedoButtons();
+}
+
+function updateUndoRedoButtons(){
+  if (historyIndex > 0) undoBtn.removeAttribute('disabled'); else undoBtn.setAttribute('disabled', 'disabled');
+  if (historyIndex < historyStack.length - 1) redoBtn.removeAttribute('disabled'); else redoBtn.setAttribute('disabled', 'disabled');
+}
+
+function undo(){
+  if (historyIndex <= 0) return;
+  historyIndex--;
+  bookedItems = JSON.parse(historyStack[historyIndex]);
+  saveBooked();
+  renderBooked();
+  updateGotoTableVisibility();
+  updateUndoRedoButtons();
+}
+
+function redo(){
+  if (historyIndex >= historyStack.length - 1) return;
+  historyIndex++;
+  bookedItems = JSON.parse(historyStack[historyIndex]);
+  saveBooked();
+  renderBooked();
+  updateGotoTableVisibility();
+  updateUndoRedoButtons();
+}
+
+snapshotHistory(); // Ausgangszustand als erste History-Stufe
+updateGotoTableVisibility();
+
 function bookCurrentItem(){
   if (!lastSelected) return;
   bookedItems.push({
@@ -858,6 +969,8 @@ function bookCurrentItem(){
     qty: 1
   });
   saveBooked();
+  updateGotoTableVisibility();
+  snapshotHistory();
 
   bookBtn.classList.add('flash');
   setTimeout(() => bookBtn.classList.remove('flash'), 300);
@@ -918,6 +1031,7 @@ function renderBooked(){
       updateRowWeight(tr, row);
       updateTotal();
     });
+    lenInput.addEventListener('change', () => snapshotHistory());
     lenTd.appendChild(lenInput);
     tr.appendChild(lenTd);
 
@@ -935,6 +1049,7 @@ function renderBooked(){
       updateRowWeight(tr, row);
       updateTotal();
     });
+    qtyInput.addEventListener('change', () => snapshotHistory());
     qtyTd.appendChild(qtyInput);
     tr.appendChild(qtyTd);
 
@@ -952,6 +1067,8 @@ function renderBooked(){
       bookedItems = bookedItems.filter(r => r.id !== row.id);
       saveBooked();
       renderBooked();
+      updateGotoTableVisibility();
+      snapshotHistory();
     });
     delTd.appendChild(delBtn);
     tr.appendChild(delTd);
@@ -976,6 +1093,7 @@ function showPage2(){
   page1El.style.display = 'none';
   page2El.style.display = 'block';
   renderBooked();
+  updateUndoRedoButtons();
 }
 
 function showPage1(){
@@ -1009,27 +1127,32 @@ function closeRowEditor(){
 }
 
 function renderRowEditDropdown(filter){
-  const f = filter.trim().toLowerCase();
+  const fDigits = digitsOnly(filter);
   rowEditFiltered = rowEditItems.filter(item => {
-    if (!f) return true;
-    const hay = (item.abm + ' ' + (item.typ||'')).toLowerCase();
-    return hay.includes(f);
+    if (!fDigits) return true;
+    const hay = digitsOnly(item.abm + ' ' + (item.typ||''));
+    return hay.includes(fDigits);
   });
   const label = editingRow && DATA[editingRow.categoryKey] && DATA[editingRow.categoryKey].abm_label;
-  rowEditDropdownEl.innerHTML = '<div class="cs-hint">Zweimal tippen zum Auswählen</div>' + buildCsListHtml(rowEditFiltered, label);
+  rowEditDropdownEl.innerHTML = buildCsListHtml(rowEditFiltered, label);
 }
 
-attachDoubleTapSelect(rowEditDropdownEl, () => rowEditFiltered, (item) => {
+attachSingleTapSelect(rowEditDropdownEl, () => rowEditFiltered, (item) => {
   if (!item || !editingRow) return;
   editingRow.typ = item.typ;
   editingRow.abmRaw = item.abm;
   editingRow.gewicht = item.gewicht;
   saveBooked();
   renderBooked();
+  snapshotHistory();
   closeRowEditor();
 });
 
-rowEditSearch.addEventListener('input', () => renderRowEditDropdown(rowEditSearch.value));
+wireLockedSearch(
+  rowEditSearch,
+  () => renderRowEditDropdown(''),
+  (val) => renderRowEditDropdown(val)
+);
 rowEditClose.addEventListener('click', closeRowEditor);
 rowEditOverlay.addEventListener('click', (e) => {
   if (e.target === rowEditOverlay) closeRowEditor();
@@ -1038,6 +1161,46 @@ rowEditOverlay.addEventListener('click', (e) => {
 bookBtn.addEventListener('click', bookCurrentItem);
 pageBtn.addEventListener('click', showPage2);
 backBtn.addEventListener('click', showPage1);
+undoBtn.addEventListener('click', undo);
+redoBtn.addEventListener('click', redo);
+
+function copyTableToClipboard(){
+  if (bookedItems.length === 0) return;
+  const lines = ['Material\tLänge (m)\tStück\tGewicht'];
+  let total = 0;
+  bookedItems.forEach(row => {
+    const name = row.abmRaw !== undefined ? formatAbm({abm: row.abmRaw}) : (row.abm || '');
+    const w = rowWeight(row);
+    total += w;
+    lines.push(`${name}\t${row.length}\t${row.qty}\t${fmtNum(w)} kg`);
+  });
+  lines.push('');
+  lines.push(`Gesamtgewicht\t\t\t${fmtNum(total)} kg`);
+  const text = lines.join('\n');
+
+  function fallbackCopy(){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
+
+  copyBtn.classList.add('flash');
+  setTimeout(() => copyBtn.classList.remove('flash'), 300);
+}
+
+copyBtn.addEventListener('click', copyTableToClipboard);
 
 buildCategories();
 </script>
